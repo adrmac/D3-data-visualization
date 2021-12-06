@@ -1,5 +1,5 @@
 import {w, h, vpadding, hpadding} from './script.js';
-import { dataset } from './barChart/barData.js';
+import { dataset } from './barData.js';
 
 const buildBarChart = () => {
     d3.selectAll('.visHolder svg').remove();

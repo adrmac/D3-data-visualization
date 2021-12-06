@@ -1,5 +1,5 @@
-import barData from './barData.js';
-import buildBarChart from './barChart.js';
+import barData from './barChart/barData.js';
+import buildBarChart from './barChart/barChart.js';
 
 export let w, h, vpadding, hpadding;
 export const visHolder = document.querySelectorAll('.visHolder');

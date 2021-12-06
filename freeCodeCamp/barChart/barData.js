@@ -1,4 +1,4 @@
-import buildBarChart from './barChart/barChart.js';
+import buildBarChart from './barChart.js';
 import { setSizes } from './script.js';
 
 // get the data to build the bar chart
