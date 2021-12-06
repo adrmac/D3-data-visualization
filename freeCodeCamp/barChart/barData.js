@@ -1,5 +1,5 @@
 import buildBarChart from './barChart.js';
-import { setSizes } from './script.js';
+import { setSizes } from '../script.js';
 
 // get the data to build the bar chart
 export const dataset = [];
