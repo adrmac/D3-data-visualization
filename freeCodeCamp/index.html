@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+      <div class="container" id="bar">
+        <div id="title">Bar Chart</div>
+        <div class="visHolder"></div>
+      </div>
+<!-- additional graphs -->
+      <div class="container" id="scatterplot">
+        <div id="title">Scatterplot Graph</div>
+        <div class="visHolder"></div>
+      </div>
+      <div class="container" id="heatmap">
+        <div id="title">Heat Map</div>
+        <div class="visHolder"></div>
+      </div>
+      <div class="container" id="choropleth">
+        <div id="title">Choropleth Map</div>
+        <div class="visHolder"></div>
+      </div>
+      <div class="container" id="treemap">
+        <div id="title">Treemap Diagram</div>
+        <div class="visHolder"></div>
+      </div>
+      
+    </div>
+    <div id="dataHolder"></div>
+      <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.0.4/d3.min.js"></script>
+      <script type="module" src="script.js"></script>
+    </body>
+</html>
