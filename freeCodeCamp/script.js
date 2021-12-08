@@ -1,10 +1,8 @@
-import barData from './barChart/barData.js';
-import buildBarChart from './barChart/barChart.js';
+import { barData } from './barChart/barData.js';
+import { scatterData } from './scatterPLot/scatterData.js';
 
 export let w, h, vpadding, hpadding;
 export const visHolder = document.querySelectorAll('.visHolder');
-let i = 0;
-
 
 
 export const setSizes = () => {
@@ -12,16 +10,27 @@ export const setSizes = () => {
   h = .5625 * w;
   vpadding = 30;
   hpadding = 50;
-  console.log('w '+w+' h '+h+' '+i);
-  i++;
+  console.log('just ran setSizes and w is '+w);
+};
+
+
+const fetchData = () => {
+  let urlArray = window.location.href.split('/');
+  switch (true) {
+    case urlArray.includes('barChart'):
+      barData();
+      break;
+    case urlArray.includes('scatterPlot'):
+      scatterData();
+      break;
+  }
 }
+fetchData();
 
 
-
-export const resetSizes = () => {
-  setSizes();
-  buildBarChart();
+export const close = () => {
+  document.getElementById('close').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('dataHolder').style.display = "none";
+  });
 }
-
-barData();
-window.addEventListener('resize', resetSizes);

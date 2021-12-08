@@ -1,10 +1,10 @@
 import {w, h, vpadding, hpadding} from '../script.js';
-import { dataset } from './barData.js';
+//import { dataset } from './barData.js';
 
-const buildBarChart = () => {
-    d3.selectAll('.visHolder svg').remove();
+export const buildBarChart = (dataset) => {
+    d3.selectAll('#bar .visHolder svg').remove();
   
-    const svg = d3.selectAll('.visHolder')
+    const svg = d3.selectAll('#bar .visHolder')
       .append('svg')
     .attr('viewBox', `0 0 ${w} ${h}`)
     .attr('preserveAspectRatio', 'none')
@@ -62,4 +62,3 @@ const buildBarChart = () => {
   }
 
 
-export default buildBarChart;
