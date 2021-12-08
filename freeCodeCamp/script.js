@@ -1,5 +1,5 @@
 import { barData } from './barChart/barData.js';
-import { scatterData } from './scatterPLot/scatterData.js';
+import { scatterData } from './scatterPlot/scatterData.js';
 
 export let w, h, vpadding, hpadding;
 export const visHolder = document.querySelectorAll('.visHolder');
