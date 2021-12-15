@@ -19,7 +19,7 @@ export const buildChart = (dataset) => {
 
     const yScale = 
       d3.scaleLinear()
-        .domain([d3.min(dataset, d=>d.listener_count), d3.max(dataset, d=>d.listener_count)])
+        .domain([d3.min(dataset, d=>d.listener_count), d3.max(dataset, d=>d.listener_count) + 20])
         .range([`${h - vpadding}`, vpadding]);
 
     const xAxis = d3.axisBottom(xScale);
@@ -117,8 +117,8 @@ export const buildChart = (dataset) => {
     };
     
     function drawMarks() {
-      svg.selectAll('circle').remove();
-      svg.selectAll('rect').remove();
+//      svg.selectAll('circle').remove();
+//      svg.selectAll('rect').remove();
 
       svg.selectAll('circle')
 //        .remove()
