@@ -134,3 +134,24 @@ svg {
 .buttons form input[type="submit"] {
   max-width: none;
 }
+
+#legend {
+  font-size: 12px;
+  background-color: white;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  top: 100px;
+  left: 100px;  
+}
+
+#legend .legend-block {
+  display: flex;
+  margin: 0 1em;
+}
+
+#legend .legend-color {
+  width: 1em;
+  height: 1em;
+  margin-right: 5px;
+}
