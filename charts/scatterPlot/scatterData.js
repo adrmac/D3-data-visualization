@@ -8,6 +8,8 @@ const url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData
 export const scatterData = () => {
     d3.json(url)
     .then(data => {
+        let ratio = .5625;
+
         let html = '<h2>raw data</h2><div><a href="#" id="close">close</a></div>';
 
         data.forEach((obj)=> {
@@ -30,10 +32,10 @@ export const scatterData = () => {
         document.getElementById('dataHolder').style.display = "block";
 
         // render the chart, and recalculate sizes on window resize
-        setSizes();
+        setSizes(ratio);
         buildScatterPlot(data);
         window.addEventListener('resize', function(){
-            setSizes();
+            setSizes(ratio);
             buildScatterPlot(data);
         });
         close();

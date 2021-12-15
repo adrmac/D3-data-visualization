@@ -8,6 +8,7 @@ export const barData = () => {
     fetch(url)
     .then(response => response.json())
     .then(data => {
+        let ratio = .5625;
         // formatting data for the dataHolder
         let html = '<h2>raw data</h2><div><a href="#" id="close">close</a></div>';
         data.data.forEach(val=> {
@@ -20,10 +21,10 @@ export const barData = () => {
         document.getElementById('dataHolder').style.display = "block";
 
         // render chart and recalculate size on window resize
-        setSizes();
+        setSizes(ratio);
         buildBarChart(data.data);
         window.addEventListener('resize', function(){
-            setSizes();
+            setSizes(ratio);
             buildBarChart(data.data);
         });
         close();

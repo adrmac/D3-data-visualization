@@ -13,13 +13,13 @@ export const buildScatterPlot = (dataset) => {
     const color = d3.scaleOrdinal(d3.schemeCategory10);
     // constructing axes, different for each type of chart
     const xScale = d3.scaleTime()
-                   .domain([d3.min(dataset, d=>d.Year - 1), d3.max(dataset, d=>d.Year)])
-                   .range([hpadding,w - vpadding]);
+                    .domain([d3.min(dataset, d=>d.Year - 1), d3.max(dataset, d=>d.Year)])
+                    .range([hpadding,w - vpadding]);
     const xAxis = d3.axisBottom(xScale).tickFormat(d3.format('d')); 
     const yScale = d3.scaleTime()
                     .domain(d3.extent(dataset, d=>d.Time))
         // extent returns an array of [min, max]
-                   .range([h - vpadding, vpadding / 2]);
+                    .range([h - vpadding, vpadding / 2]);
     const timeFormat = d3.timeFormat('%M:%S');
     const yAxis = d3.axisLeft(yScale).tickFormat(timeFormat);
   
