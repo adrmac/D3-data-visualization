@@ -6,15 +6,6 @@ export const buildChart = (dataset) => {
 
   // removes the chart so it can rebuild on every resize
     visHolder.selectAll('svg').remove();
-    visHolder.selectAll('div').remove();
-
-    visHolder
-      .append('div')
-      .attr('id','title')
-      .html('Orcasound listeners recorded at each detection')
-
-    d3.select('title')
-      .html('Orcasound listeners recorded at each detection');
 
     const svg = visHolder
       .append('svg')
