@@ -10,74 +10,91 @@
 <body>
     <div class="main">
       <div class="container">
-        <div id="title">Orcasound listeners recorded at each detection</div>
-        <div id="legend">
-          <div class="legend-block">
-            <div class="legend-color" style="background: red;"></div>
-            <div class="legend-text">Orcasound Lab</div>
-          </div>
-          <div class="legend-block">
-            <div class="legend-color" style="background: blue;"></div>
-            <div class="legend-text">Bush Point</div>
-          </div>
-          <div class="legend-block">
-            <div class="legend-color" style="background: green;"></div>
-            <div class="legend-text">Port Townsend</div>
+        <div class="title-block">
+          <div id="title">Orcasound listeners</div>
+          <div class="buttons">
+            <form id="dateForm">
+              <div class="formBlock">
+                <div id="startDate" style="display: none;"></div>
+                <div class="formRow">
+                  <div class="formLabel">start date</div>
+                  <label for="startYear">year:</label>
+                  <input type="text" name="startYear" id="startYear">
+                  <span>-</span>
+                  <label for="startMonth">month:</label>
+                  <input type="text" name="startMonth" id="startMonth">
+                  <span>-</span>
+                  <label for="startDay">day:</label>                
+                  <input type="text" name="startDay" id="startDay">
+                </div>
+                <div class="formRow">
+                  <div class="formLabel">start time</div>
+                  <label for="startHour">hour:</label>
+                  <input type="text" name="startHour" id="startHour">
+                  <span>:</span>
+                  <label for="startMinute">minute:</label>
+                  <input type="text" name="startMinute" id="startMinute">
+                  <span>:</span>
+                  <label for="startSecond">second:</label>
+                  <input type="text" name="startSecond" id="startSecond">
+                </div>
+              </div>
+              <div class="blockDivider"></div>
+              <div class="formBlock">
+                <div id="endDate" style="display: none;"></div>
+                <div class="formRow">
+                  <div class="formLabel">end date</div>
+                  <label for="endYear">year:</label>
+                  <input type="text" name="endYear" id="endYear">
+                  <span>-</span>
+                  <label for="endMonth">month:</label>
+                  <input type="text" name="endMonth" id="endMonth">
+                  <span>-</span>
+                  <label for="endDay">day:</label>
+                  <input type="text" name="endDay" id="endDay">
+                </div>
+                <div class="formRow">
+                  <div class="formLabel">end time</div>
+                  <label for="endHour">hour:</label>
+                  <input type="text" name="endHour" id="endHour">
+                  <span>:</span>
+                  <label for="endMinute">minute:</label>
+                  <input type="text" name="endMinute" id="endMinute">
+                  <span>:</span>
+                  <label for="endSecond">second:</label>
+                  <input type="text" name="endSecond" id="endSecond">
+                </div>
+              </div>
+              <div class="buttonRow">
+                <input type="submit" value="Submit">
+              </div>
+            </form>
           </div>
         </div>
         <div class="visHolder"></div>
-        <div class="buttons" style="width: 100%; display: flex; justify-content: space-between;">
-          <form id="startForm">
-            <div>start date</div>
-            <div id="startDate"></div>
-            <br />
-            <label for="startYear">year:</label>
-            <input type="text" name="startYear" id="startYear">
-            <span>-</span>
-            <label for="startMonth">month:</label>
-            <input type="text" name="startMonth" id="startMonth">
-            <span>-</span>
-            <label for="startDay">day:</label>
-            <input type="text" name="startDay" id="startDay">
-            <span>&nbsp;&nbsp;</span>
-            <label for="startHour">hour:</label>
-            <input type="text" name="startHour" id="startHour">
-            <span>:</span>
-            <label for="startMinute">minute:</label>
-            <input type="text" name="startMinute" id="startMinute">
-            <span>:</span>
-            <label for="startSecond">second:</label>
-            <input type="text" name="startSecond" id="startSecond">
-            <span>&nbsp;&nbsp;</span>
-            <input type="submit" value="Submit">
-          </form>
-          <form id="endForm">
-            <div>end date</div>
-            <div id="endDate"></div>
-            <br />
-            <label for="endYear">year:</label>
-            <input type="text" name="endYear" id="endYear">
-            <span>-</span>
-            <label for="endMonth">month:</label>
-            <input type="text" name="endMonth" id="endMonth">
-            <span>-</span>
-            <label for="endDay">day:</label>
-            <input type="text" name="endDay" id="endDay">
-            <span>&nbsp;&nbsp;</span>
-            <label for="endHour">hour:</label>
-            <input type="text" name="endHour" id="endHour">
-            <span>:</span>
-            <label for="endMinute">minute:</label>
-            <input type="text" name="endMinute" id="endMinute">
-            <span>:</span>
-            <label for="endSecond">second:</label>
-            <input type="text" name="endSecond" id="endSecond">
-            <span>&nbsp;&nbsp;</span>
-            <input type="submit" value="Submit">
-          </form>
+        <div id="legend">
+          <div class="legend-block">
+            <div class="legend-color"></div>
+            <div class="legend-text">Orcasound Lab</div>
+          </div>
+          <div class="legend-block">
+            <div class="legend-color"></div>
+            <div class="legend-text">Bush Point</div>
+          </div>
+          <div class="legend-block">
+            <div class="legend-color"></div>
+            <div class="legend-text">Port Townsend</div>
+          </div>
+          <div class="legend-block">
+            <div class="legend-shape" style="display: flex; align-items: center; justify-content: center;">
+              <div class="legend-dot" style="background-color: black; border: 1px solid black; border-radius: 50%; width: 2px; height: 2px;"></div>
+            </div>
+            <div class="legend-text">Recording point (1 sec)</div>
+          </div>
         </div>
+        <a href="./listenerCount.json" target="_blank" class="dataSource">source data</div>
+        <div id="dataHolder"></div>
       </div>
-      <div id="dataHolder"></div>
     </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.0.4/d3.min.js"></script>
       <script type="module" src="../script.js"></script>

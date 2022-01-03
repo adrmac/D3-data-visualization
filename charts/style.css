@@ -3,9 +3,15 @@
   padding: 0;
 }
 
+html {
+  font-family: 'Helvetica';
+  font-weight: 300;
+}
+
 svg {
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(0,0,0,.025);
   margin: auto;
+  border: 1px solid rgba(0,0,0,.1);
 }
 
 .main {
@@ -13,15 +19,7 @@ svg {
   grid-template-columns: 1fr;
   column-gap: 2em;
   row-gap: 2em;
-  padding: 2em;
   max-width: 100vw;
-  /*  display: flex;
-  flex-direction: column;
-  align-items: center;
-*/
-  font-family: 'Helvetica';
-  background-color: rgba(0,0,0,.1);
-/*  background-color: #708090; */
   background-size: 64px 128px;
 }
 .main .container {
@@ -43,9 +41,9 @@ svg {
 }
 */
 .main .container #title {
-  text-align: center;
+  text-align: center; 
   font-size: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 1.33em;
 }
 .main .container .visHolder {
   position: relative;
@@ -57,6 +55,12 @@ svg {
 */
 }
 
+.main .title-block {
+  display: flex;
+  flex-direction: column;
+}
+
+
 #dataHolder {
 /*  display: none; */
   margin: auto;
@@ -65,6 +69,7 @@ svg {
   border: 1px solid black;
   box-shadow: 3px 3px 3px gray;
   text-align: center;
+  display: none;
 }
 
 #tooltip {
@@ -110,9 +115,6 @@ svg {
   background-color: blue;
 }
 
-.buttons {
-  margin-top: 1em;
-}
 
 .buttons form {
   font-size: 12px;
@@ -122,36 +124,89 @@ svg {
   display: none;
 }
 
-.buttons form input {
+.buttons form input, .buttons form input:focus-visible {
   display: inline-block;
-  max-width: 15px;
+  max-width: 1.25em; 
+  border: none;
+  outline: none;
+  text-align: right;
+  font-family: 'Helvetica';
+  font-size: 12px;
+  font-weight: 300;
+  border-bottom: 1px solid rgba(0,0,0,.25);
 }
 
 .buttons form input#startYear, input#endYear {
   max-width: 30px;
 }
 
+.buttons form .buttonRow {
+  clear: left;
+}
+
 .buttons form input[type="submit"] {
   max-width: none;
+  background: transparent;
+  border: 1px solid lightgray;
+  padding: 5px 66px;
+  display: none;
+}
+
+.buttons form input[type="submit"]:hover {
+  background: lightgray;
+}
+
+.buttons form .formBlock {
+  float: left;
+  margin-top: 1px;
+}
+
+.buttons form .blockDivider {
+  border-left: 1px solid lightgray;
+  margin: 0 1.5em 2em;
+  height: 40px;
+  float: left;
+}
+
+.buttons form .formRow {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.buttons form .formLabel {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.buttons form span {
+  margin: 0 3px;
 }
 
 #legend {
   font-size: 12px;
   background-color: white;
   display: flex;
-  position: absolute;
-  flex-direction: column;
+/*  position: absolute; */
+/*  flex-direction: column; */
   top: 120px;
   left: 100px;  
+  margin: 2em 0;
 }
 
 #legend .legend-block {
   display: flex;
-  margin: 0 1em;
+  margin-right: 2em;
 }
 
-#legend .legend-color {
+#legend .legend-color, #legend .legend-shape {
   width: 1em;
   height: 1em;
   margin-right: 5px;
+}
+
+a.dataSource {
+  font-size: 12px;
+  color: black;
 }

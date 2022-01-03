@@ -35,15 +35,13 @@ export const buildChart = (dataset) => {
       .attr('transform', `translate(${hpadding}, 0)`);
 
     var uniqueNodes = [...new Set(d3.map(dataset, d=>d.node_name))];
-    var color = d3.scaleOrdinal()
-                .domain(uniqueNodes);
-    
+    var color = d3.scaleOrdinal(d3.schemeTableau10).domain(uniqueNodes);    
 
     const tooltip = d3.select('.visHolder')
       .append('div')
       .attr('id','tooltip')
       .style('opacity', 0);
-
+/*
     svg.selectAll('.line')
        .data(dataset)
        .enter()
@@ -56,7 +54,7 @@ export const buildChart = (dataset) => {
            .x(d => xScale(d.datetime))
            .y(d => yScale(d.listener_count))
        })
-
+*/
     let ol_data = [];
     let bp_data = [];
     let pt_data = [];
@@ -83,7 +81,7 @@ export const buildChart = (dataset) => {
       .datum(ol_data)
       .attr('id', 'orcasound-lab')
       .attr('fill', 'none')
-      .attr('stroke', 'red')
+      .attr('stroke', color(uniqueNodes[0]))
       .attr('stroke-opacity', .5)
       .attr('stroke-width', 1.5)
       .attr('d', d3.line()
@@ -95,7 +93,7 @@ export const buildChart = (dataset) => {
       .datum(bp_data)
       .attr('id', 'bush-point')
       .attr('fill', 'none')
-      .attr('stroke', 'blue')
+      .attr('stroke', color(uniqueNodes[1]))
       .attr('stroke-opacity', .5)
       .attr('stroke-width', 1.5)
       .attr('d', d3.line()
@@ -107,7 +105,7 @@ export const buildChart = (dataset) => {
       .datum(pt_data)
       .attr('id', 'port-townsend')
       .attr('fill', 'none')
-      .attr('stroke', 'green')
+      .attr('stroke', color(uniqueNodes[2]))
       .attr('stroke-opacity', .5)
       .attr('stroke-width', 1.5)
       .attr('d', d3.line()
@@ -116,6 +114,9 @@ export const buildChart = (dataset) => {
       )
     };
     
+    d3.selectAll('.legend-color')
+      .style('background', (d,i) => color(uniqueNodes[i]))
+
     function drawMarks() {
 //      svg.selectAll('circle').remove();
 //      svg.selectAll('rect').remove();
@@ -200,61 +201,59 @@ export const buildChart = (dataset) => {
     const startDate = d3.min(dataset, d => d.datetime);
     const endDate = d3.max(dataset, d => d.datetime);
     let duration = 1500;
+    const addZeros = () => {
+        document.querySelectorAll('input').forEach(input=>{
+        if(input.value.length === 1) {
+          input.value = '0' + input.value;
+        }
+      });
+    }
 
     d3.select('#startDate').html(startDate);
     d3.select('#startYear').attr('value', startDate.getFullYear());
-      d3.select('#startMonth').attr('value', startDate.getMonth() + 1);
-      d3.select('#startDay').attr('value', startDate.getDate());
-      d3.select('#startHour').attr('value', startDate.getHours());
-      d3.select('#startMinute').attr('value', startDate.getMinutes());
-      d3.select('#startSecond').attr('value', startDate.getSeconds());
+    d3.select('#startMonth').attr('value', startDate.getMonth() + 1);
+    d3.select('#startDay').attr('value', startDate.getDate());
+    d3.select('#startHour').attr('value', startDate.getHours());
+    d3.select('#startMinute').attr('value', startDate.getMinutes());
+    d3.select('#startSecond').attr('value', startDate.getSeconds());
       
-      d3.select('#endDate').html(endDate);
-      d3.select('#endYear').attr('value', endDate.getFullYear());
-      d3.select('#endMonth').attr('value', endDate.getMonth()+ 1);
-      d3.select('#endDay').attr('value', endDate.getDate());
-      d3.select('#endHour').attr('value', endDate.getHours());
-      d3.select('#endMinute').attr('value', endDate.getMinutes());
-      d3.select('#endSecond').attr('value', endDate.getSeconds());
+    d3.select('#endDate').html(endDate);
+    d3.select('#endYear').attr('value', endDate.getFullYear());
+    d3.select('#endMonth').attr('value', endDate.getMonth()+ 1);
+    d3.select('#endDay').attr('value', endDate.getDate());
+    d3.select('#endHour').attr('value', endDate.getHours());
+    d3.select('#endMinute').attr('value', endDate.getMinutes());
+    d3.select('#endSecond').attr('value', endDate.getSeconds());
 
+    addZeros();
 
-      d3.select('#startForm')
-        .on('submit', function(e) {
-          e.preventDefault();
-          let start = new Date(
-            e.target.elements.startYear.value,
-            e.target.elements.startMonth.value - 1,
-            e.target.elements.startDay.value,
-            e.target.elements.startHour.value,
-            e.target.elements.startMinute.value,
-            e.target.elements.startSecond.value
-            );
-            xScale.domain([start, xScale.domain()[1]]);
-            svg.select('#x-axis')
-               .transition().duration(duration)
-               .call(xAxis);
-            redrawPaths();
-            d3.select('#startDate').html(start);
-        });
-
-        d3.select('#endForm')
-        .on('submit', function(e) {
-          e.preventDefault();
-          let end = new Date(
-            e.target.elements.endYear.value,
-            e.target.elements.endMonth.value - 1,
-            e.target.elements.endDay.value,
-            e.target.elements.endHour.value,
-            e.target.elements.endMinute.value,
-            e.target.elements.endSecond.value
-            );
-            xScale.domain([xScale.domain()[0], end]);
-            svg.select('#x-axis')
-               .transition().duration(0)
-               .call(xAxis);
-            redrawPaths();
-            d3.select('#endDate').html(end);
-        });
+    d3.select('#dateForm')
+      .on('submit', function(e) {
+        e.preventDefault();
+        let start = new Date(
+          e.target.elements.startYear.value,
+          e.target.elements.startMonth.value - 1,
+          e.target.elements.startDay.value,
+          e.target.elements.startHour.value,
+          e.target.elements.startMinute.value,
+          e.target.elements.startSecond.value
+          );
+        let end = new Date(
+          e.target.elements.endYear.value,
+          e.target.elements.endMonth.value - 1,
+          e.target.elements.endDay.value,
+          e.target.elements.endHour.value,
+          e.target.elements.endMinute.value,
+          e.target.elements.endSecond.value
+          );            
+          xScale.domain([start, end]);
+          svg.select('#x-axis')
+             .transition().duration(duration)
+             .call(xAxis);
+          redrawPaths();
+          d3.select('#startDate').html(start);
+          addZeros();
+      });
                 
 };
 
