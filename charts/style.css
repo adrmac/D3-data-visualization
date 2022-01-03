@@ -14,6 +14,18 @@ svg {
   border: 1px solid rgba(0,0,0,.1);
 }
 
+.toc {
+  padding: 5% 10%;
+}
+
+.toc h1 {
+  margin-bottom: 20px;
+}
+
+.toc ul {
+  margin-left: 1rem;
+}
+
 .main {
   display: grid;
   grid-template-columns: 1fr;
@@ -22,6 +34,7 @@ svg {
   max-width: 100vw;
   background-size: 64px 128px;
 }
+
 .main .container {
   background-color: #fff;
   display: flex;
